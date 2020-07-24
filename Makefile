@@ -133,11 +133,11 @@ $(B)/%.s:: src/%.c
 $(B)/%.lo:: src/%.c
 	$(CC) $(CFLAGS) $($*.CFLAGS) -fPIC -DSHARED -c -o $@ $< 2>$@.err || echo BUILDERROR $@; cat $@.err
 $(B)/%.so: $(B)/%.lo
-	$(CC) -shared $(LDFLAGS) $($*.so.LDFLAGS) -o $@ $< $($*.so.LOBJS) $(LDLIBS) $($*.so.LDLIBS) 2>$@.err || echo BUILDERROR $@; cat $@.err
+	$(CC) -shared $(LDFLAGS) $($*.so.LDFLAGS) -o $@ $(sort $< $($*.so.LOBJS)) $(LDLIBS) $($*.so.LDLIBS) 2>$@.err || echo BUILDERROR $@; cat $@.err
 $(B)/%-static.exe: $(B)/%.o
-	$(CC) -static $(LDFLAGS) $($*-static.LDFLAGS) -o $@ $< $($*-static.OBJS) $(LDLIBS) $($*-static.LDLIBS) 2>$@.ld.err || echo BUILDERROR $@; cat $@.ld.err
+	$(CC) -static $(LDFLAGS) $($*-static.LDFLAGS) -o $@ $(sort $< $($*-static.OBJS)) $(LDLIBS) $($*-static.LDLIBS) 2>$@.ld.err || echo BUILDERROR $@; cat $@.ld.err
 $(B)/%.exe: $(B)/%.o
-	$(CC) $(LDFLAGS) $($*.LDFLAGS) -o $@ $< $($*.OBJS) $(LDLIBS) $($*.LDLIBS) 2>$@.ld.err || echo BUILDERROR $@; cat $@.ld.err
+	$(CC) $(LDFLAGS) $($*.LDFLAGS) -o $@ $(sort $< $($*.OBJS)) $(LDLIBS) $($*.LDLIBS) 2>$@.ld.err || echo BUILDERROR $@; cat $@.ld.err
 
 %.o.err: %.o
 	touch $@
