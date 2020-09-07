@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include "test.h"
 
-#define N 400
+#define N 500
 static char buf[N];
 static char buf2[N];
 
@@ -57,8 +57,8 @@ int main(void)
 
 	pmemset = memset;
 
-	for (i = 0; i < 16; i++)
-		for (j = 0; j < 200; j++)
+	for (i = 0; i < 64; i++)
+		for (j = 0; j < N-200; j++)
 			test_align(i,j);
 
 	test_value('c');
