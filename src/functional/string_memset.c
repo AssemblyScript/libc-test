@@ -58,7 +58,7 @@ int main(void)
 	pmemset = memset;
 
 	for (i = 0; i < 64; i++)
-		for (j = 0; j < N-200; j++)
+		for (j = 0; j < N-256; j++)
 			test_align(i,j);
 
 	test_value('c');
