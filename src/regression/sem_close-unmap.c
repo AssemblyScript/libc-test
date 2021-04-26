@@ -1,5 +1,6 @@
 // commit: f70375df85d26235a45e74559afd69be59e5ff99 2020-10-28
 #define _GNU_SOURCE 1
+#include <fcntl.h>
 #include <stdlib.h>
 #include <semaphore.h>
 
