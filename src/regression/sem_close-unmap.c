@@ -9,7 +9,7 @@ int main()
 	char buf[] = "mysemXXXXXX";
 	if (!mktemp(buf)) return 1;
 	// open twice
-	sem_t *sem = sem_open(buf, O_CREAT|O_EXCL, 0600);
+	sem_t *sem = sem_open(buf, O_CREAT|O_EXCL, 0600, 0);
 	sem_open(buf, 0);
 	sem_unlink(buf);
 	// close once
